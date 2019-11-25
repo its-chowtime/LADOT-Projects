@@ -29,8 +29,20 @@ chess_pieces = {'pawns':'Pw','knight':'Kn','bishop':'Bs','queen':'Qu','king':'Kg
 # Function
 
 def start():
-    print('Enter a piece at starting point A1')
+    print('Enter a piece to start at point A1')
     userinput = input()
     c_b[0][0] = chess_pieces[userinput]
-    print(c_b)
 start()
+
+row_array = np.array(rows)
+col_array = np.array(cols)
+c_b_array = np.array(c_b)
+print(c_b_array)
+print(row_array)
+
+'''
+loc # location
+
+def move():
+    knm1 = loc + 
+'''
