@@ -1,19 +1,26 @@
+import os
 import requests
 import pandas as pd
 import json
 import time
 import numpy as np
 
+# change directory
+desiredpath = 'C:/Users/406822/Desktop/tim_black_mds/'
+os.chdir(desiredpath)
+print(desiredpath)
+
+
 def sleeper():
     while True:
-        num = 1792.52
+        num = (300-8)    # Sleep for 15 minutes
         try:
             num = float(num)
         except ValueError:
             print('Enter in a number.\n')
             continue
         
-
+        # Pulls from api
         print('%s' % time.ctime())
         _wheels = requests.get('https://la-gbfs.getwheelsapp.com/free_bike_status.json').json()
         _lime = requests.get('https://lime.bike/api/partners/v1/gbfs/los_angeles/free_bike_status.json').json()
