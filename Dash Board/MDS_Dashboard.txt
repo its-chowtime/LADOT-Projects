@@ -1,0 +1,36 @@
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+import pandas_datareader.data as web
+import datetime
+import pandas as pd
+import requests
+import time
+import json
+
+
+start = datetime.datetime(2015, 1, 1)
+end = datetime.datetime.now()
+
+stock = 'TSLA'
+
+df = web.DataReader(stock,'yahoo', start, end)
+
+app = dash.Dash()
+
+app.layout = html.Div(children=[
+    html.Div(children='''finance'''),
+    dcc.Graph(
+        id='example-graph',
+        figure ={
+            'data': [
+                {'x': df.index, 'y': df.Close,'type': 'line', 'name': stock},
+                ],
+                    'layout': {
+                        'title': stock
+                    }
+                })
+    ])
+
+if __name__ == '__main__':
+    app.run_server(debug=True)
