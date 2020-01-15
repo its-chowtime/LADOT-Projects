@@ -25,45 +25,55 @@ df = pd.read_csv(data)
 #df['new_date'] = pd.to_datetime(df['unixtime'],unit='s') # Check time/date
 # print(df.head())
 
-
-colors = {
-    'background': '#111111',
-    'text': '#7FDBFF'
-}
-
-app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
-    html.H1(
-        children='MDS Scooter Dashboard',
-        style={
-            'textAlign': 'center',
-            'color': colors['text']
-        }
-    ),
-
-    html.Div(children='Numbers of Scooters Being Used in past 24 Hours', style={
-        'textAlign': 'center',
-        'color': colors['text']
-    }),
-    
+app.layout = html.Div([
     dcc.Graph(
-        id='MDS',
+        id='bird',
         figure={
             'data': [
                 {'x': df[df['company']=='birdla']['date'], 'y': df[df['company']=='birdla']['used'], 'type': 'line', 'name': 'birdla'},
-                {'x': df[df['company']=='spin']['date'], 'y': df[df['company']=='spin']['used'], 'type': 'line', 'name': 'spin'},
-                {'x': df[df['company']=='wheels']['date'], 'y': df[df['company']=='wheels']['used'], 'type': 'line', 'name': 'wheels'},
                 {'x': df[df['company']=='birdsm']['date'], 'y': df[df['company']=='birdsm']['used'], 'type': 'line', 'name': 'birdsm'},
-                {'x': df[df['company']=='lime']['date'], 'y': df[df['company']=='lime']['used'], 'type': 'line', 'name': 'lime'},
-
             ],
             'layout': {
-                'plot_bgcolor': colors['background'],
-                'paper_bgcolor': colors['background'],
-                'font': {
-                    'color': colors['text']
-    
-                }
+                'height': 400
             }
+        }
+    ),
+    html.Hr(),
+    dcc.Graph(
+        id='spin',
+        style={
+            'height': 400
+        },
+        figure={
+            'data': [
+                {'x': df[df['company']=='spin']['date'], 'y': df[df['company']=='spin']['used'], 'type': 'line', 'name': 'spin'},
+            ]
+        }
+    ),
+    html.Hr(),
+    dcc.Graph(
+        id='wheels',
+        style={
+            'height': 400
+        },
+        figure={
+            'data': [
+                {'x': df[df['company']=='wheels']['date'], 'y': df[df['company']=='wheels']['used'], 'type': 'line', 'name': 'wheels'},
+
+            ]
+        }
+    ),
+    html.Hr(),
+    dcc.Graph(
+        id='lime',
+        style={
+            'height': 400
+        },
+        figure={
+            'data': [
+                {'x': df[df['company']=='lime']['date'], 'y': df[df['company']=='lime']['used'], 'type': 'line', 'name': 'lime'},
+
+            ]
         }
     )
 ])
