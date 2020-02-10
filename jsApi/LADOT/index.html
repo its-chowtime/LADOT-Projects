@@ -1,0 +1,70 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+
+            .column {
+                float: left;
+                
+            }
+            .bikeId {
+                background-color: cadetblue;
+                width: 50%;
+            }
+            .lat {
+                background-color: cornflowerblue;
+                width: 25%;
+            }
+            .lon {
+                background-color: aquamarine;
+                width: 25%;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <p>MDS API DATA</p>
+        <div class="row">
+            <div class="column bikeId">
+                <h2>bike_id</h2>
+                <p id="bike_id"></p>
+            </div>
+            <div class="column lat">
+                <h2>lat</h2>
+                <p id="lat"></p>
+            </div>
+            <div class="column lon">
+                <h2>lon</h2>
+                <p id="lon"></p>
+            </div>
+        </div>
+        
+      
+
+        <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    var myArr, i, bikes_ids, lats, lons;
+                    myArr = JSON.parse(this.responseText);
+                    bike_ids = "";
+                    lats = "";
+                    lons = "";
+                    for (i=0; i < myArr.data.bikes.length; i++) {
+                        bike_ids = bike_ids + myArr.data.bikes[i].bike_id + "<br>";
+                        lats = lats + myArr.data.bikes[i].lat + "<br>";
+                        lons = lons + myArr.data.bikes[i].lon + "<br>";
+                    }
+                    document.getElementById("bike_id").innerHTML = bike_ids;
+                    document.getElementById("lat").innerHTML = lats;
+                    document.getElementById("lon").innerHTML = lons;
+
+                }
+            };
+            xhttp.open("GET", "https://mds.bird.co/gbfs/los-angeles/free_bikes",true);
+            xhttp.send();
+        </script>
+    </body>
+</html>
