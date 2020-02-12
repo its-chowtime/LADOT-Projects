@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -10,15 +10,19 @@
             }
             .bikeId {
                 background-color: cadetblue;
-                width: 50%;
+                width: 40%;
             }
             .lat {
                 background-color: cornflowerblue;
-                width: 25%;
+                width: 22.5%;
             }
             .lon {
                 background-color: aquamarine;
-                width: 25%;
+                width: 22.5%;
+            }
+            .last {
+                background-color: beige;
+                width: 15%;
             }
 
         </style>
@@ -39,6 +43,10 @@
                 <h2>lon</h2>
                 <p id="lon"></p>
             </div>
+            <div class="column last">
+                <h2>count number</h2>
+                <p id="countU"></p>
+            </div>
         </div>
         
       
@@ -47,7 +55,7 @@
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if(this.readyState == 4 && this.status == 200) {
-                    var myArr, i, bikes_ids, lats, lons;
+                    var myArr, i, bike_ids, lats, lons;
                     myArr = JSON.parse(this.responseText);
                     bike_ids = "";
                     lats = "";
