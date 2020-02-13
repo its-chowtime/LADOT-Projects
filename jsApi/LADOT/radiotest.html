@@ -43,7 +43,9 @@
                     if(this.readyState == 4 && this.status == 200) {
                         var myArr, counts;
                         myArr = JSON.parse(this.responseText);
+                        console.log(myArr);
                         counts = myArr.data.bikes.length;
+                        console.log(counts);
                         document.getElementById("demo").innerHTML = counts;
                     }
                 };
