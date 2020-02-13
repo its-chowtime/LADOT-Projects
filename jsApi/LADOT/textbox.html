@@ -10,11 +10,20 @@
             <input type="text" name="text box">
 
             <!-- Radio buttons -->
-            <input type="radio" name="mdsprovider" value="birdla"> Bird (LA) <br>
-            <input type="radio" name="mdsprovider" value="birdsm"> Bird (SM) <br>
-            <input type="radio" name="mdsprovider" value="spin"> Spin <br>
-            <input type="radio" name="mdsprovider" value="wheels"> Wheels <br>
-            <input type="radio" name="mdsprovider" value="lime"> Lime
+            <input type="radio" id="birdLa" name="mdsprovider" value="birdLa" onclick="runFunc()">
+            <label for="birdLa">Bird (LA)</label> <br>
+            <input type="radio" id="birdSm" name="mdsprovider" value="birdSm" onclick="runFunc()">
+            <label for="birdSm">Bird (SM)</label> <br>
+            <input type="radio" id="lime" name="mdsprovider" value="lime" onclick="runFunc()">
+            <label for="lime">Lime</label> <br>
+            <input type="radio" id="lyft" name="mdsprovider" value="lyft" onclick="runFunc()">
+            <label for="lyft">Lyft</label> <br>
+            <input type="radio" id="spin" name="mdsprovider" value="spin" onclick="runFunc()">
+            <label for="spin">Spin</label> <br>
+            <input type="radio" id="wheels" name="mdsprovider" value="wheels" onclick="runFunc()">
+            <label for="wheels">Wheels</label> <br>
+            <br><hr><br>
+            <p id="demo"></p>
 
             <br>
             <input type="submit" value="Submit">

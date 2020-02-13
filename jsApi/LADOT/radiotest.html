@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<div>
+    <form>
+        <div>
+            <input type="radio" id="birdLa" name="mdsprovider" value="birdLa" onclick="getIndex()">
+            <label for="birdLa">Bird (LA)</label> <br>
+            <input type="radio" id="birdSm" name="mdsprovider" value="birdSm" onclick="getIndex()">
+            <label for="birdSm">Bird (SM)</label> <br>
+        </div>
+        <div>
+            <button type="submit">Click</button>
+        </div>
+    </form>
+    <p id="demo"></p>
+    <pre id="log">
+
+    </pre>
+</div>
+<script>
+    function testFunc() {
+        var listOfProv = {"birdLa":"https://mds.bird.co/gbfs/los-angeles/free_bikes","birdSm":"https://mds.bird.co/gbfs/santamonica/free_bikes","lime":"https://data.lime.bike/api/partners/v1/gbfs/los_angeles/free_bike_status","lyft":"https://s3.amazonaws.com/lyft-lastmile-production-iad/lbs/lax/free_bike_status.json","spin":"https://web.spin.pm/api/gbfs/v1/los_angeles/free_bike_status.json","wheels":"https://la-gbfs.getwheelsapp.com/free_bike_status.json"};
+        
+        var x = document.getElementById("")
+        console.log(form)
+        
+        // var x = document.getElementById("myRadio").value;
+        // document.getElementById("demo").innerHTML = listOfProv[x];
+    }
+
+    function getIndex() {
+        var x = document.getElementsById("input").value;
+        document.getElementsByTagName("input").innerHTML = x;
+
+    }
+
+    // WTF does this do
+    function runFunc() {
+        var form = document.querySelector("form");
+        var log = document.querySelector("#log");
+        
+        form.addEventListener("submit", function(event) {
+            var data = new FormData(form);
+            var output ="";
+            for (const entry of data) {
+                output = output + entry[0] + "=" + entry[1] + "\r";
+                console.log(output);
+            };
+            log.innerText = output;
+            event.preventDefault();
+        }, false);
+    }
+
+</script>
+
+</html>
