@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to return the value of its value attribute.</p>
+
+<button id="myBtn" value="myvalue" onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+    var birdLa = "https://mds.bird.co/gbfs/los-angeles/free_bikes"
+    function testFunction() {
+        var mdsProviderApi = birdLa;
+        var mdsProviderName = document.getElementById("myBtn").value; // Set button value to variable to pull below
+        
+        document.getElementById("name").innerHTML = "<b>"+mdsProviderName + ": " + mdsProviderApi+"</b>";
+        // document.getElementById("bird").innerHTML = mdsProviderApi;
+
+        requestApi(mdsProviderApi);
+    }
+    
+    function requestApi(mdsProviderApi) {
+        // Pulling data from API
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200) {
+                var myArr, i, bike_ids, lats, lons;
+                myArr = JSON.parse(this.responseText);
+
+                counts = myArr.data.bikes.length;
+                document.getElementById("countU").innerHTML = counts;
+            }
+        };
+        xhttp.open("GET", mdsProviderApi,true);
+        xhttp.send();
+    }
+    
+
+</script>
+
+</body>
+</html>
