@@ -5,6 +5,7 @@
         <title>Textbox</title>
     </head>
     <body>
+        
         <form>
             <!-- Text box -->
             <input type="text" name="text box">
@@ -24,9 +25,25 @@
             <label for="wheels">Wheels</label> <br>
             <br><hr><br>
             <p id="demo"></p>
-
-            <br>
             <input type="submit" value="Submit">
         </form>
+
+        <div>
+            <input type="radio" id="radio1" value="one" onclick="runThis()">
+            <label for="radio1">First</label>
+            <input type="radio" id="radio2" value="two" onclick="runThis(2)">
+            <label for="radio2">Second</label>
+            <br>
+            <p id="demo"></p>
+        </div>
     </body>
+    <script>
+        function runThis(arg) {
+            console.log(arg);
+            var x = document.getElementById("radio1").value;
+            document.getElementById("demo").innerHTML = x;
+            console.log(x);
+            return x;
+    }
+    </script>
 </html>
