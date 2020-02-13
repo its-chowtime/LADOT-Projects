@@ -1,11 +1,3 @@
-var theData1 = '{"first":"Joao", "last":"de Oliveira", "city":"LA"}';
-var myObj = JSON.parse(theData1);
-console.log(myObj);
-
-document.getElementById('message01').innerHTML = myObj.first;
-
-
-
 const generateJson = () => {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
