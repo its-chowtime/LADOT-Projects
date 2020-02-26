@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+  </head>
+  <body>
+    <p>This is a fetch test</p>
+    <script>
+        function jsonData(url="") {
+            fetch(url)
+            .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+            })
+            .then((myJson) => {
+            let count = myJson.data.bikes.length;
+            let sCount = count.toString();
+            //console.log(myJson);
+            console.log(count);
+            console.log(sCount);
+            })
+            .catch((error) => {
+            console.error('There is a problem with the fetch operation', error);
+            });
+            }
+        jsonData('https://mds.bird.co/gbfs/los-angeles/free_bikes');
+        // https://howtocreateapps.com/fetch-and-display-json-html-javascript/
+    </script>
+  </body>
+</html>

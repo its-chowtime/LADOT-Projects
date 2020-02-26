@@ -97,19 +97,21 @@
         let apiLink = provApi[companyName];
         requestApi(apiLink);
     }
-
+    function thisCallback() {
+        var myArr, counts;
+        myArr = JSON.parse(this.responseText);
+        console.log(status);
+        console.log(myArr);
+        counts = myArr.data.bikes.length;
+        console.log(counts);
+        document.getElementById("demo").innerHTML = counts;
+    }
     function requestApi(apiLink) {
                 // Pulling data from API
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if(this.readyState == 4 && this.status == 200) {
-                        var myArr, counts;
-                        myArr = JSON.parse(this.responseText);
-                        console.log(status);
-                        console.log(myArr);
-                        counts = myArr.data.bikes.length;
-                        console.log(counts);
-                        document.getElementById("demo").innerHTML = counts;
+                        thisCallback();
                     }
                 };
                 xhttp.open("GET", apiLink,true);
