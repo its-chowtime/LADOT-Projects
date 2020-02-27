@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Textbox</title>
+    </head>
+    <body> <!-- Do I need a main? -->
+        <h1>MDS KPI</h1>
+        <div class="column bottom">
+            <h3>Total Count</h3>
+        </div>
+
+        <div class="column top"> <!-- Button allows to change the text in the html -->
+            <button onclick="myFunction()">Click</button>
+            <p id="birdla"> Bird Lost Angeles </p>
+            <p id="birdsm"> Bird Santa Monico </p>
+        </div>
+        <div>
+            <p>
+                <input type="text" name="textbox">
+                <input type="radio" name="mdsprovider" value="birdLa"> Bird (LA) <br>
+                <input type="radio" name="mdsprovider" value="birdSm"> Bird (SM) <br>
+            </p>
+        </div>
+
+        <script>
+            var birdLa, birdSm
+            birdLa = "https://mds.bird.co/gbfs/los-angeles/free_bikes"
+            birdSm = "https://mds.bird.co/gbfs/santamonica/free_bikes"
+            // Changes both | How do i get it to change only one | or I can have it generate both?
+            function myFunction() {
+                var birdLa = document.getElementById("birdla").innerHTML;
+                // document.getElementById("birdla").innerHTML = "https://mds.bird.co/gbfs/los-angeles/free_bikes"
+                // document.getElementById("birdsm").innerHTML = "https://mds.bird.co/gbfs/santamonica/free_bikes"
+            }
+
+            // Button to get value and display it
+            var birdLa = "https://mds.bird.co/gbfs/los-angeles/free_bikes"
+            function testFunction() {
+                var mdsProviderApi = birdLa;
+                var mdsProviderName = document.getElementById("myBtn").value; // Set button value to variable to pull below
+                document.getElementById("name").innerHTML = mdsProviderName;
+                document.getElementById("bird").innerHTML = mdsProviderApi;
+            }
+        </script>
+    </body>
+</html>

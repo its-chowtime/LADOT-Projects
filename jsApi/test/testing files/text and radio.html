@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Textbox</title>
+    </head>
+    <body>
+        
+        <form>
+            <!-- Text box -->
+            <input type="text" name="text box">
+
+            <!-- Radio buttons -->
+            <input type="radio" id="birdLa" name="mdsprovider" value="birdLa" onclick="runFunc()">
+            <label for="birdLa">Bird (LA)</label> <br>
+            <input type="radio" id="birdSm" name="mdsprovider" value="birdSm" onclick="runFunc()">
+            <label for="birdSm">Bird (SM)</label> <br>
+            <input type="radio" id="lime" name="mdsprovider" value="lime" onclick="runFunc()">
+            <label for="lime">Lime</label> <br>
+            <input type="radio" id="lyft" name="mdsprovider" value="lyft" onclick="runFunc()">
+            <label for="lyft">Lyft</label> <br>
+            <input type="radio" id="spin" name="mdsprovider" value="spin" onclick="runFunc()">
+            <label for="spin">Spin</label> <br>
+            <input type="radio" id="wheels" name="mdsprovider" value="wheels" onclick="runFunc()">
+            <label for="wheels">Wheels</label> <br>
+            <br><hr><br>
+            <p id="demo"></p>
+            <input type="submit" value="Submit">
+        </form>
+
+        <div>
+            <input type="radio" id="radio1" value="one" onclick="runThis()">
+            <label for="radio1">First</label>
+            <input type="radio" id="radio2" value="two" onclick="runThis(2)">
+            <label for="radio2">Second</label>
+            <br>
+            <p id="demo"></p>
+        </div>
+    </body>
+    <script>
+        function runThis(arg) {
+            console.log(arg);
+            var x = document.getElementById("radio1").value;
+            document.getElementById("demo").innerHTML = x;
+            console.log(x);
+            return x;
+    }
+    </script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+
+            .column {
+                float: left;
+                
+            }
+            .bikeId {
+                background-color: cadetblue;
+                width: 40%;
+            }
+            .lat {
+                background-color: cornflowerblue;
+                width: 22.5%;
+            }
+            .lon {
+                background-color: aquamarine;
+                width: 22.5%;
+            }
+            .last {
+                background-color: beige;
+                width: 15%;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <p>MDS API DATA</p>
+        <div class="row">
+            <div class="column last">
+                <h2>count num</h2>
+                <p id="countU"></p>
+            </div>
+        </div>
+        
+      
+
+        <script>
+            
+            // Pulling data from API
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    var myArr, i, bike_ids, lats, lons;
+                    myArr = JSON.parse(this.responseText);
+                    counts = myArr.data.bikes.length;
+                    document.getElementById("countU").innerHTML = counts;
+                }
+            };
+            xhttp.open("GET", "https://web.spin.pm/api/gbfs/v1/los_angeles/free_bike_status.json",true);
+            xhttp.send();
+        </script>
+    </body>
+</html>
