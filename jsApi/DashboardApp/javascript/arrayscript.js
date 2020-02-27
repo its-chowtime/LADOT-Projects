@@ -15,20 +15,21 @@ function reqApi(apiUrl, name) {
         if(this.readyState == 4 && this.status == 200) {
             let jsonData = JSON.parse(this.responseText);
             let count = jsonData.data.bikes.length.toString();
-            console.log("inside xhr");
-            arr.push(name,count);
+            arr.push(name,count); // append the data into an arr
         }
     }
     xhttp.open("Get", apiUrl, true);
     xhttp.send();
 }
 
-for(var i=0; i < nameArr.length; i++) {
-    let name = nameArr[i];
-    let apiUrl = apiArr[i];
-    console.log("outside");
-    reqApi(apiUrl, name);
-};
+function arrFunc() {
+    for(var i=0; i < nameArr.length; i++) {
+        let name = nameArr[i];
+        let apiUrl = apiArr[i];
+        reqApi(apiUrl, name); // passes the arguments into the function
+    };
+    return arr;
+}
 
-console.log(arr);
-
+let returnValue = arrFunc();
+console.log(returnValue[0]);
