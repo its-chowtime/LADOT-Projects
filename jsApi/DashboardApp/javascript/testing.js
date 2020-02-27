@@ -16,23 +16,28 @@ function reqApi(apiUrl) {
         if(this.readyState == 4 && this.status == 200) {
             let jsonData = JSON.parse(this.responseText);
             let count = jsonData.data.bikes.length.toString();
+            //console.log(nameArr);
             //console.log(count);
+            //console.log(jsonData);
+            console.log("inside out");
+            for(var i=0; i<nameArr.length;i++) { // This is looping and repringting too much, I just want the name to append
+                let provider = nameArr[i];
+                arr.push(provider,count);
+                console.log("inside" + i);
+                break;
+            }
+            //console.log(arr);
         }
     }
     xhttp.open("Get", apiUrl, true);
     xhttp.send();
 }
 
-function listShit() {
-    for(var i=0; i < nameArr.length; i++) {
-        let name = nameArr[i];    // gets the names
-        console.log(name);
-        let apiUrl = apiArr[i];
-        console.log(apiUrl);
-        let y = reqApi(apiUrl);    // should get the count
-        //arr.push(x,y);
-        //console.log(arr);
-    };
+for(var i=0; i<nameArr.length;i++) {
+    let apiUrl = apiArr[i]
+    reqApi(apiUrl);
+    console.log("outside" + i);
 }
-
-listShit();
+//let apiUrl = apiArr[0];
+//reqApi(apiUrl);
+console.log(arr);
