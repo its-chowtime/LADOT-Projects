@@ -1,13 +1,13 @@
-const nameArr = ["birdLa","birdSm","lime","lyft","spin"]
+var nameArr = ["birdLa","birdSm","lime","lyft","spin"]
 
-const apiArr = ["https://mds.bird.co/gbfs/los-angeles/free_bikes",
+var apiArr = ["https://mds.bird.co/gbfs/los-angeles/free_bikes",
 "https://mds.bird.co/gbfs/santamonica/free_bikes",
 "https://data.lime.bike/api/partners/v1/gbfs/los_angeles/free_bike_status",
 "https://s3.amazonaws.com/lyft-lastmile-production-iad/lbs/lax/free_bike_status.json",
 "https://web.spin.pm/api/gbfs/v1/los_angeles/free_bike_status.json"
 ]
 
-var arr = []
+var countArr = []
 
 function reqApi(apiUrl, name) {
     var xhttp = new XMLHttpRequest();
@@ -15,7 +15,8 @@ function reqApi(apiUrl, name) {
         if(this.readyState == 4 && this.status == 200) {
             let jsonData = JSON.parse(this.responseText);
             let count = jsonData.data.bikes.length.toString();
-            arr.push(name,count); // append the data into an arr
+            countArr.push(name,count); // append the data into an countArr
+            document.getElementById("nameCount").innerHTML = countArr;
         }
     }
     xhttp.open("Get", apiUrl, true);
@@ -28,8 +29,6 @@ function arrFunc() {
         let apiUrl = apiArr[i];
         reqApi(apiUrl, name); // passes the arguments into the function
     };
-    return arr;
 }
 
-let returnValue = arrFunc();
-console.log(returnValue[0]);
+arrFunc();
