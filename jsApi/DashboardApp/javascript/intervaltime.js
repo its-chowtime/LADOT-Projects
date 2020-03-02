@@ -7,23 +7,18 @@ var apiArr = ["https://mds.bird.co/gbfs/los-angeles/free_bikes",
 "https://web.spin.pm/api/gbfs/v1/los_angeles/free_bike_status.json"
 ]
 
-var bikeArr = []
+var countArr = []
+var proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
-
-function reqApi(apiUrl, name) {
+async function reqApi(apiUrl, name) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
             let jsonData = JSON.parse(this.responseText);
-            let bikeData = jsonData.data.bikes;
-            console.log(bikeData);
-            for(var i = 0; i < bikeData.length; i++) {
-                let bikeId = bikeData[bike_id]
-                //console.log(bikeData[bike_id]);
-                bikeArr.push(bikeId);
-                console.log(bikeId);
-            }
-            //document.getElementById("addData").innerHTML = jsonData;
+            let count = jsonData.data.bikes.length.toString();
+            countArr.push(name,count); // append the data into an countArr
+            document.getElementById("nameCount").innerHTML = countArr;
+            console.log(countArr);
         }
     }
     xhttp.open("Get", apiUrl, true);
@@ -35,8 +30,8 @@ function arrFunc() {
         let name = nameArr[i];
         let apiUrl = apiArr[i];
         reqApi(apiUrl, name); // passes the arguments into the function
-        break;
-    };   
+        console.log(countArr);
+    };
 }
 
-arrFunc();
+setInterval(arrFunc,155000);

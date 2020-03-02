@@ -20,13 +20,12 @@ async function getApi(url = "") {
         return response.json();
       })
       .then((myJson) => {
-        const count = resp.data.bikes.length.toString();
+        const count = myJson.data.bikes.length.toString();
         console.log(count);
-        return count;
       })
       .catch((error) => {
         console.error('There is a problem with the fetch operation', error);
       });
   }
 
-  getApi();
+  getApi('https://mds.bird.co/gbfs/los-angeles/free_bikes');
