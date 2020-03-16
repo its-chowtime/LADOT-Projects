@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>MDS BSG LADOT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+            #header-index {
+                position: static;
+                top: 0;
+            }
+            .div-container {
+                width: 500px;
+                height: 300px;
+                position: absolute;
+                top: 40%;
+                left: 40%;
+                background-color: cadetblue;
+                font-size: 30px;
+                font-family: Arial, Helvetica, sans-serif;
+                border-radius: 10px;
+            }
+            #left-div {
+                position: absolute;
+                top: 40px;
+                left: 23px;
+                background-color: darkgray;
+                border-radius: 10px;
+                padding: 10px;
+            }
+            #right-div {
+                position: absolute;
+                top: 40px;
+                right: 23px;
+                text-align: center;
+                background-color: darkgray;
+                padding: 5px;
+                border-radius: 10px;
+            }
+            #demo {
+                background-color: white;
+                border-radius: 20px;
+                width: auto;
+            }
+
+            </style>
+    </head>
+    <header id="header-index">
+    <a href="index.html"><img alt="LADOT" src="LADOT_logo.png"></a>
+    </header>
+    <body class="mds dash">
+        <div class="div-container">
+            <div id="left-div" >
+            <input type="radio" id="birdLa" name="mdsprovider" value="birdLa" onclick="runFunc(0)">
+            <label for="birdLa">Bird (LA)</label> <br>
+            <input type="radio" id="birdSm" name="mdsprovider" value="birdSm" onclick="runFunc(1)">
+            <label for="birdSm">Bird (SM)</label> <br>
+            <input type="radio" id="lime" name="mdsprovider" value="lime" onclick="runFunc(2)">
+            <label for="lime">Lime</label> <br>
+            <input type="radio" id="lyft" name="mdsprovider" value="lyft" onclick="runFunc(3)">
+            <label for="lyft">Lyft</label> <br>
+            <input type="radio" id="spin" name="mdsprovider" value="spin" onclick="runFunc(4)">
+            <label for="spin">Spin</label> <br>
+            <input type="radio" id="wheels" name="mdsprovider" value="wheels" onclick="runFunc(5)">
+            <label for="wheels">Wheels</label>
+            </div>
+            <div id="right-div">
+                <p>Scooters Available</p>
+                <p id="demo"></p>
+            </div>
+        </div>
+    </body>
+
+<script>
+    function runFunc(arg) {
+        const listOfProv = ["birdLa","birdSm","lime","lyft","spin","wheels"]
+        let companyName = listOfProv[arg];
+        console.log(companyName);
+        nextFunc(companyName);
+    }
+
+    function nextFunc(companyName) {
+        const provApi = {"birdLa":"https://mds.bird.co/gbfs/los-angeles/free_bikes",
+                       "birdSm":"https://mds.bird.co/gbfs/santamonica/free_bikes",
+                       "lime":"https://data.lime.bike/api/partners/v1/gbfs/los_angeles/free_bike_status",
+                       "lyft":"https://s3.amazonaws.com/lyft-lastmile-production-iad/lbs/lax/free_bike_status.json",
+                       "spin":"https://web.spin.pm/api/gbfs/v1/los_angeles/free_bike_status.json",
+                       "wheels":"https://la-gbfs.getwheelsapp.com/free_bike_status.json"}
+        let apiLink = provApi[companyName];
+        requestApi(apiLink);
+    }
+
+    function requestApi(apiLink) {
+                // Pulling data from API
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if(this.readyState == 4 && this.status == 200) {
+                        var myArr, counts;
+                        myArr = JSON.parse(this.responseText);
+                        console.log(status);
+                        console.log(myArr);
+                        counts = myArr.data.bikes.length;
+                        console.log(counts);
+                        document.getElementById("demo").innerHTML = counts;
+                    }
+                };
+                xhttp.open("GET", apiLink,true);
+                xhttp.send();
+    }
+</script>
+
+</html>
