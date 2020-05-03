@@ -5,28 +5,28 @@ import csv
 import json
 
 # change directory
-desiredpath = 'C:/Users/406822/Desktop/tim_black_mds/'
+desiredpath = '/home/pi/data/MDS'
 os.chdir(desiredpath)
 print(desiredpath)
 
 
-birdla = pd.read_csv('birdla.csv',sep=',',names=['count','time'])
-birdla_data = pd.read_csv('birdla_data.csv',sep=',',names=['bikeid','is_reserved','is_disabled','lat','lon','time'])
-birdsm = pd.read_csv('birdsm.csv',sep=',',names=['count','time'])
-birdsm_data = pd.read_csv('birdsm_data.csv',sep=',',names=['bikeid','is_reserved','is_disabled','lat','lon','time'])
-lime = pd.read_csv('lime.csv',sep=',',names=['count','time'])
-lime_data = pd.read_csv('lime_data.csv',sep=',',names=['bikeid','is_reserved','is_disabled','lat','lon','type','time'])
+jumpb = pd.read_csv('jumpb.csv',sep=',',names=['count','time'])
+jumpb_data = pd.read_csv('jumpb_data.csv',sep=',',names=['bikeid','is_reserved','is_disabled','lat','lon','time'])
+jumps = pd.read_csv('jumps.csv',sep=',',names=['count','time'])
+jumps_data = pd.read_csv('jumps_data.csv',sep=',',names=['bikeid','is_reserved','is_disabled','lat','lon','time'])
+lyft = pd.read_csv('lyft.csv',sep=',',names=['count','time']
+lyft_data = pd.read_csv('lyft_data.csv',sep=',',names=['bikeid','is_reserved','is_disabled','lat','lon','type','time'])
 spin = pd.read_csv('spin.csv',sep=',',names=['count','time'])
 spin_data = pd.read_csv('spin_data.csv',sep=',',names=['bikeid','is_reserved','is_disabled','lat','lon','type','time'])
 wheels = pd.read_csv('wheels.csv',sep=',',names=['count','time'])
 wheels_data = pd.read_csv('wheels_data.csv',sep=',',names=['bikeid','is_reserved','is_disabled','lat','lon','vehicleid','time'])
 
 
-list0 = ['birdla.csv','birdla_data.csv','birdsm.csv','birdsm_data.csv','lime.csv','lime_data.csv','spin.csv','spin_data.csv','wheels.csv','wheels_data.csv']
-list01 = ['birdla','birdsm','lime','spin','wheels']
-list02 = ['birdla_data','birdsm_data','lime_data','spin_data','wheels_data']
-list1 = [birdla,birdsm,lime,spin,wheels]
-list2 = [birdla_data,birdsm_data,lime_data,spin_data,wheels_data]
+list0 = ['jumpb.csv','jumpb_data.csv','jumps.csv','jumps_data.csv','lyft.csv','lyft_data.csv','spin.csv','spin_data.csv','wheels.csv','wheels_data.csv']
+list01 = ['jumpb','jumps','lyft','spin','wheels']
+list02 = ['jumpb_data','jumps_data','lyft_data','spin_data','wheels_data']
+list1 = [jumpb,jumps,lyft,spin,wheels]
+list2 = [jumpb_data,jumps_data,lyft_data,spin_data,wheels_data]
 
 
 # Create new files with header
@@ -34,15 +34,15 @@ col_head0 = ['count','unixtime','company'] # How to create headers ?????????
 col_head1 = ['bikeid','lat','lon','unixtime','company']
 df = pd.DataFrame(columns=col_head0)
 df2 = pd.DataFrame(columns=col_head1)
-df.to_csv('count_time_1min.csv')
+df.to_csv('ct_15_int.csv')
 df2.to_csv('test.csv')
 
 
 # Saves counts and time into one file
 for x in range(len(list1)):
     list1[x]['company'] = list01[x] # Create a column to store company name
-    list1[x].to_csv('count_time_1min.csv',mode='a',header=False)
-df = pd.read_csv('count_time_1min.csv')
+    list1[x].to_csv('ct_15_int.csv',mode='a',header=False)
+df = pd.read_csv('ct_15_int.csv')
 
 
 '''

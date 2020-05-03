@@ -29,29 +29,29 @@ def sleeper():
         
         # Pulls from api
         print('%s' % time.ctime())
-        _spin = requests.get('https://web.spin.pm/api/gbfs/v1/los_angeles/free_bike_status.json').json()
+        _lyft = requests.get('https://s3.amazonaws.com/lyft-lastmile-production-iad/lbs/lax/free_bike_status.json').json()
 
         # Store all data to df
-        spin_df = pd.DataFrame(_spin['data']['bikes'])
+        lyft_df = pd.DataFrame(_lyft['data']['bikes'])
 
         # Create new column
-        spin_df['time'] = _spin['last_updated']
+        lyft_df['time'] = _lyft['last_updated']
 
         # Save to csv
-        spin_df.to_csv('spin_data.csv',mode='a',header=False)
+        lyft_df.to_csv('lyft_data.csv',mode='a',header=False)
 
         # Pull count
-        spin_count= str(len(_spin['data']['bikes']))
+        lyft_count= str(len(_lyft['data']['bikes']))
 
         # Pull time
-        spin_time= str(_spin['last_updated'])
+        lyft_time= str(_lyft['last_updated'])
 
         # Concatenate into a row to write to the output csv file
-        spin = spin_count + "," + spin_time
+        lyft = lyft_count + "," + lyft_time
 
         # Append to time_count.csv
-        with open('spin.csv',mode='a') as outfile: 
-            outfile.write(spin)
+        with open('lyft.csv',mode='a') as outfile: 
+            outfile.write(lyft)
             outfile.write("\n")
 
         print('%s' % time.ctime())

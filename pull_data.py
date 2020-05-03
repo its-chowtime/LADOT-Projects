@@ -6,10 +6,11 @@ import time
 import numpy as np
 
 # change directory
-desiredpath = 'C:/Users/Pat/gitRepo/LADOT-Projects/data'
+desiredpath = '/home/pi/data'
 os.chdir(desiredpath)
 print("path" + desiredpath)
 
+provider = ''
 provider = input('Type in provider name: ')
 url = {'birdla':'https://mds.bird.co/gbfs/los-angeles/free_bikes',
         'birdsm':'https://mds.bird.co/gbfs/santamonica/free_bikes',

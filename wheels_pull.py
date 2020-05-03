@@ -29,29 +29,29 @@ def sleeper():
         
         # Pulls from api
         print('%s' % time.ctime())
-        _spin = requests.get('https://web.spin.pm/api/gbfs/v1/los_angeles/free_bike_status.json').json()
+        _wheels = requests.get('https://la-gbfs.getwheelsapp.com/free_bike_status.json').json()
 
         # Store all data to df
-        spin_df = pd.DataFrame(_spin['data']['bikes'])
+        wheels_df = pd.DataFrame(_wheels['data']['bikes'])
 
         # Create new column
-        spin_df['time'] = _spin['last_updated']
+        wheels_df['time'] = _wheels['last_updated']
 
         # Save to csv
-        spin_df.to_csv('spin_data.csv',mode='a',header=False)
+        wheels_df.to_csv('wheels_data.csv',mode='a',header=False)
 
         # Pull count
-        spin_count= str(len(_spin['data']['bikes']))
+        wheels_count= str(len(_wheels['data']['bikes']))
 
         # Pull time
-        spin_time= str(_spin['last_updated'])
+        wheels_time= str(_wheels['last_updated'])
 
         # Concatenate into a row to write to the output csv file
-        spin = spin_count + "," + spin_time
+        wheels = wheels_count + "," + wheels_time
 
         # Append to time_count.csv
-        with open('spin.csv',mode='a') as outfile: 
-            outfile.write(spin)
+        with open('wheels.csv',mode='a') as outfile: 
+            outfile.write(wheels)
             outfile.write("\n")
 
         print('%s' % time.ctime())
