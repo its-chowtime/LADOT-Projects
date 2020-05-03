@@ -14,7 +14,7 @@ jumpb = pd.read_csv('jumpb.csv',sep=',',names=['count','time'])
 jumpb_data = pd.read_csv('jumpb_data.csv',sep=',',names=['bikeid','is_reserved','is_disabled','lat','lon','time'])
 jumps = pd.read_csv('jumps.csv',sep=',',names=['count','time'])
 jumps_data = pd.read_csv('jumps_data.csv',sep=',',names=['bikeid','is_reserved','is_disabled','lat','lon','time'])
-lyft = pd.read_csv('lyft.csv',sep=',',names=['count','time']
+lyft = pd.read_csv('lyft.csv',sep=',',names=['count','time'])
 lyft_data = pd.read_csv('lyft_data.csv',sep=',',names=['bikeid','is_reserved','is_disabled','lat','lon','type','time'])
 spin = pd.read_csv('spin.csv',sep=',',names=['count','time'])
 spin_data = pd.read_csv('spin_data.csv',sep=',',names=['bikeid','is_reserved','is_disabled','lat','lon','type','time'])
